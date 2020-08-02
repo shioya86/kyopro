@@ -8,7 +8,7 @@ make:
 init:
 	mkdir -p build
 	mkdir -p workspace
-	python3 init.py templete/main.${LANG} workspace
+	python3 init.py template/main.${LANG} workspace
 run:
 	dmd -run workspace/${P}.d
 clean:
