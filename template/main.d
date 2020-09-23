@@ -1,5 +1,7 @@
+void solve(){
+
+}
 void main(){
-    
 }
      
 import std.stdio, std.conv, std.algorithm, std.numeric, std.string, std.math, std.range;
