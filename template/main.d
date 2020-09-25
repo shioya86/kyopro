@@ -2,10 +2,11 @@ void solve(){
 
 }
 void main(){
+	writeln()
 }
      
 import std.stdio, std.conv, std.algorithm, std.numeric, std.string, std.math, std.range;
-     
+const long mod = 10^^9+7;      
 // 1要素のみの入力
 T inelm(T= int)(){
 	return to!(T)( readln().chomp() );
