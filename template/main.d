@@ -1,4 +1,4 @@
-oyarare/coop-sim-drawervoid solve(){
+void solve(){
 }
 
 void main(){
