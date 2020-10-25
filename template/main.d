@@ -1,6 +1,3 @@
-void solve(){
-}
-
 void main(){
 }
      
