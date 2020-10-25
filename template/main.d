@@ -1,3 +1,6 @@
+void solve(){
+}
+
 void main(){
 }
      
