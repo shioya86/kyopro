@@ -7,8 +7,6 @@ import std;
 const long mod = 10^^9+7;
 const long inf = 10L^^18+1;
 
-alias Tuple!(int, "l", int, "r") Pair;
-
 alias instr = () => readln.chomp;
 T inone(T=int)(){return readln.chomp.to!T;}
 void inelm(L...)(ref L A){ auto l = readln.split;
