@@ -1,4 +1,5 @@
-void main(){
+void main()
+{
 
 }
      
@@ -16,12 +17,15 @@ T[] inarr(T = int)(){ return readln.split.to!(T[]); }
 int c2i(char c){ return c.to!string.to!int; }
 
 // Prime factorization
-long[long] primeFactorize(long n){
+long[long] primeFactorize(long n)
+{
 	long[long] res;
-	for(long i=2; i*i <= n; i++){
+	for(long i=2; i*i <= n; i++)
+	{
 		if(n%i != 0) continue;
 		long tmp;
-		while(n%i==0){
+		while(n%i==0)
+		{
 			tmp++;
 			n /= i;
 		}
