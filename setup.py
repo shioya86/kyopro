@@ -2,7 +2,7 @@ import sys
 import platform
 import os
 import subprocess
-extensions = {'d':'d', 'c':'c', 'kotlin':'kt', 'c++':'cpp'}
+extensions = {'d':'d', 'c':'c', 'kotlin':'kt', 'c++':'cpp', 'python':'py'}
 exe_cwd = os.getcwd()
 os_name = platform.system()
 print(os_name)
