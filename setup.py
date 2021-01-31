@@ -23,10 +23,12 @@ def create_files(_lang, _order):
 
 def create_desktop_path(os_name):
     desktop_path = ''
-    if os_name in os_win 
+    if os_name in os_win:
         desktop_path = os.getenv("HOMEDRIVE") + os.getenv("HOMEPATH") + "\\Desktop"
-    elif dep in os_linux 
-    elif dep in os_mac 
+    elif dep in os_linux:
+        desktop_path = ''
+    elif dep in os_mac:
+        desktop_path = ''
     return desktop_path
 
 def input_default(default):
@@ -52,7 +54,7 @@ if __name__ == '__main__':
     print( 'making competitive programming project ...')
 
     # 解答テンプレートの挿入
-    if dep in os_win 
+    if dep in os_win:
         # For Windows OS
         order = 'mkdir {}\\{}'.format(path, outdir)
         subprocess.run(order, shell=True) # make target directory
@@ -65,12 +67,12 @@ if __name__ == '__main__':
         order = 'copy {} {}'.format(template_path, out_path)
         create_files(_lang=lang, _order=order)
 
-    elif dep in os_linux 
+    elif dep in os_linux:
         # For Linux OS bash
         print('[error]Unimplemented')
         exit()
 
-    elif dep in os_mac 
+    elif dep in os_mac:
         # For Mac OS
         print('[error]Unimplemented')
         exit()
