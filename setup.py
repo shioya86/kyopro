@@ -25,22 +25,20 @@ def create_desktop_path(os_name):
         desktop_path = ''
     return desktop_path
 
+def input_default(default):
+    res = input()
+    return default if res=='' else res
+
 if __name__ == '__main__':
     print( '!input your project information')
     print( '[OS you are using (default: {})]'.format(os_name) )
-    dep = input()
-    dep = os_name if dep=='' else dep
-
+    dep = input_default(os_name)
     print( '[file path (default: {})]'.format(create_desktop_path(dep)))
-    path = input()
-    path = create_desktop_path(dep) if path=='' else path
-
+    path = input_default( create_desktop_path(dep) )
     print( '[programming language (default: d)]' )
-    lang = input()
-    lang = 'd' if lang=='' else lang
+    lang = input_default('d')
     print( '[project or contest name (default: kyopro-proj)]')
-    outdir = input()
-    outdir = 'kyopro-proj' if outdir=='' else outdir
+    outdir = input_default('kyopro-proj')
     if lang in extensions:
         extension = extensions[lang]
     else:
