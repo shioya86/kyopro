@@ -2,9 +2,14 @@ import sys
 import platform
 import os
 import subprocess
+
 extensions = {'d':'d', 'c':'c', 'kotlin':'kt', 'c++':'cpp', 'python':'py'}
+os_win = ['Windows', 'windows', 'win', 'Win']
+os_linux = ['Linux', 'linux', 'bash', 'Ubuntu', 'ubuntu']
+os_mac = ['Mac', 'mac']
 exe_cwd = os.getcwd()
 os_name = platform.system()
+
 print(os_name)
 def create_files(_lang, _order):
     if lang in extensions:
@@ -17,12 +22,11 @@ def create_files(_lang, _order):
         subprocess.run(new_order, shell=True, cwd=exe_cwd)
 
 def create_desktop_path(os_name):
-    if os_name in ['Windows', 'windows', 'win', 'Win']:
+    desktop_path = ''
+    if os_name in os_win 
         desktop_path = os.getenv("HOMEDRIVE") + os.getenv("HOMEPATH") + "\\Desktop"
-    elif dep in ['Linux', 'linux', 'bash']:
-        desktop_path = ''
-    elif dep in ['Mac', 'mac']:
-        desktop_path = ''
+    elif dep in os_linux 
+    elif dep in os_mac 
     return desktop_path
 
 def input_default(default):
@@ -44,10 +48,11 @@ if __name__ == '__main__':
     else:
         print('This language is not registered')
         exit()
+
     print( 'making competitive programming project ...')
 
     # 解答テンプレートの挿入
-    if dep in ['Windows', 'windows', 'win', 'Win']:
+    if dep in os_win 
         # For Windows OS
         order = 'mkdir {}\\{}'.format(path, outdir)
         subprocess.run(order, shell=True) # make target directory
@@ -60,12 +65,12 @@ if __name__ == '__main__':
         order = 'copy {} {}'.format(template_path, out_path)
         create_files(_lang=lang, _order=order)
 
-    elif dep in ['Linux', 'linux', 'bash']:
+    elif dep in os_linux 
         # For Linux OS bash
         print('[error]Unimplemented')
         exit()
 
-    elif dep in ['Mac', 'mac']:
+    elif dep in os_mac 
         # For Mac OS
         print('[error]Unimplemented')
         exit()
