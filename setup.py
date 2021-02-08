@@ -37,7 +37,8 @@ if __name__ == '__main__':
     print( 'File path? ({})'.format( create_desktop_path() ), end=' ')
     file_path = input_default( create_desktop_path() )
 
-    print( '(1) D (default) \n(2) Python \n(3) C++')
+    for i, elm in enumerate(supported_languages):
+        print( '({}) {} {}'.format(i, elm, '(default)' if i==0 else '') )
     print( 'Programming language?', end=' ' )
     use_lang = input_default('D')
 
