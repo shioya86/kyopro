@@ -40,8 +40,8 @@ if __name__ == '__main__':
     for i, elm in enumerate(supported_languages):
         print( '({}) {} {}'.format(i, elm, '(default)' if i==0 else '') )
     print( 'Programming language?', end=' ' )
-    use_lang = input_default('D')
-
+    in_num = input_default(0)
+    use_lang = supported_languages[ int(in_num) ] 
     print( 'Contest name? (tasks)', end=' ' )
     outdir = input_default('tasks')
 
