@@ -22,8 +22,9 @@ def create_desktop_path():
     desktop_path = ''
     if platform.system() == 'Windows' :
         desktop_path = os.getenv("HOMEDRIVE") + os.getenv("HOMEPATH") + "\\Desktop"
+    elif platform.system() == 'Linux' :
+        desktop_path = os.getenv('HOME') + '/Desktop'
     else:
-        print('error: Unsupported OS.')
         exit()
     return desktop_path
 
@@ -63,6 +64,18 @@ if __name__ == '__main__':
         out_path = '{}\\{}\\'.format(file_path, outdir)
         order = 'copy {} {}'.format(template_path, out_path)
         create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
+    elif platform.system() == 'Linux':
+        order = 'mkdir {}/{}'.format(file_path, outdir)
+        subprocess.run(order, shell=True)
+
+        order = 'rm {}/{}/*'.format(file_path, outdir)
+        subprocess.run(order, shell=True)
+
+        template_path = 'template/main.{}'.format( extensions[use_lang] )
+        out_path = '{}/{}/'.format(file_path, outdir)
+        order = 'cp {} {}'.format(template_path, out_path)
+        create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
+
     else:
         print('error: Unsupported OS.')
 
