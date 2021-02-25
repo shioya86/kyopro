@@ -7,8 +7,6 @@ import subprocess
 supported_languages = [ 'D', 'Python', 'C++' ]
 extensions = {'D':'d', 'C':'c', 'Kotlin':'kt', 'C++':'cpp', 'Python':'py'}
 
-exe_cwd = os.getcwd()
-
 def create_files(_lang, _order, _problem_num):
     if _lang in extensions:
         extension = extensions[_lang]
@@ -36,8 +34,8 @@ def input_default(default):
 if __name__ == '__main__':
     print( 'input your project information.\n')
 
-    print( 'File path? ({})'.format( create_desktop_path() ), end=' ')
-    file_path = input_default( create_desktop_path() )
+    print( 'File path? ({})'.format( os.getcwd() ), end=' ')
+    file_path = input_default( os.getcwd() )
 
     for i, elm in enumerate(supported_languages):
         print( '({}) {} {}'.format(i, elm, '(default)' if i==0 else '') )
