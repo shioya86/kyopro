@@ -53,25 +53,29 @@ if __name__ == '__main__':
     # 解答テンプレートの挿入
     if platform.system() == 'Windows':
         # For Windows OS
-        order = 'mkdir {}\\{}'.format(file_path, outdir)
+        order = 'mkdir {}\\{}'.format(os.getcwd(), outdir)
         subprocess.run(order, shell=True) # make target directory
 
-        order = 'del /Q {}\\{}\\'.format(file_path, outdir)
+        order = 'del /Q {}\\{}\\'.format(os.getcwd(), outdir)
         subprocess.run(order, shell=True) # delete prev submission files
 
-        template_path = 'template\\main.{}'.format( extensions[use_lang] )
-        out_path = '{}\\{}\\'.format(file_path, outdir)
+        template_path = '{}\\template\\main.{}'.format( 
+                os.path.dirname(__file__),
+                extensions[use_lang] )
+        out_path = '{}\\{}\\'.format(os.getcwd(), outdir)
         order = 'copy {} {}'.format(template_path, out_path)
         create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
     elif platform.system() == 'Linux':
-        order = 'mkdir {}/{}'.format(file_path, outdir)
+        order = 'mkdir {}/{}'.format(os.getcwd(), outdir)
         subprocess.run(order, shell=True)
 
-        order = 'rm {}/{}/*'.format(file_path, outdir)
+        order = 'rm {}/{}/*'.format(os.getcwd(), outdir)
         subprocess.run(order, shell=True)
 
-        template_path = 'template/main.{}'.format( extensions[use_lang] )
-        out_path = '{}/{}/'.format(file_path, outdir)
+        template_path = '{}/template/main.{}'.format(
+                os.path.dirname(__file__),
+                extensions[use_lang] )
+        out_path = '{}/{}/'.format(os.getcwd(), outdir)
         order = 'cp {} {}'.format(template_path, out_path)
         create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
 
