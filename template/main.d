@@ -17,24 +17,24 @@ bool chmin(T=long)(ref T a, const T b) { if(a>b) {a=b; return true;} return fals
 bool chmax(T=long)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
 
 class UnionFind {
-	int[] par, rank;
-	this(int n) { par.length = rank.length = n; foreach(i; 0..n) par[i] = i; }
-	int find(int x) { if (par[x] == x) return x; else return par[x] = find(par[x]); }
-	void unite(int x, int y) {
-		x = find(x); y = find(y);
-		if(x==y) return;
-		if(rank[x] < rank[y]) par[x] = y;
-		else { par[y] = x; if (rank[x] == rank[y]) rank[x]++; }
-	}
-	bool same(int x, int y) { return find(x) == find(y); }
+  int[] par, rank;
+  this(int n) { par.length = rank.length = n; foreach(i; 0..n) par[i] = i; }
+  int find(int x) { if (par[x] == x) return x; else return par[x] = find(par[x]); }
+  void unite(int x, int y) {
+    x = find(x); y = find(y);
+    if(x==y) return;
+    if(rank[x] < rank[y]) par[x] = y;
+    else { par[y] = x; if (rank[x] == rank[y]) rank[x]++; }
+  }
+  bool same(int x, int y) { return find(x) == find(y); }
 }
 
 T crotate(T=Complex!double)(T center, T target, real theta) {
-	return complex(
-			(target.re-center.re)*cos(theta) - (target.im-center.im)*sin(theta) + center.re,
-			(target.re-center.re)*sin(theta) + (target.im-center.im)*cos(theta) + center.im);
+  return complex(
+    (target.re-center.re)*cos(theta) - (target.im-center.im)*sin(theta) + center.re,
+    (target.re-center.re)*sin(theta) + (target.im-center.im)*cos(theta) + center.im);
 }
 
 T ccenter(T=Complex!double)(T p0, T p1) {
-	return complex( (p0.re+p1.re)/2, (p0.im+p1.im)/2 );
+  return complex( (p0.re+p1.re)/2, (p0.im+p1.im)/2 );
 }
