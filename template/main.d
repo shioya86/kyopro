@@ -1,4 +1,4 @@
-void main(){
+void main() {
 
 }
      
@@ -27,4 +27,14 @@ class UnionFind {
 		else { par[y] = x; if (rank[x] == rank[y]) rank[x]++; }
 	}
 	bool same(int x, int y) { return find(x) == find(y); }
+}
+
+T crotate(T=Complex!double)(T center, T target, real theta) {
+	return complex(
+			(target.re-center.re)*cos(theta) - (target.im-center.im)*sin(theta) + center.re,
+			(target.re-center.re)*sin(theta) + (target.im-center.im)*cos(theta) + center.im);
+}
+
+T ccenter(T=Complex!double)(T p0, T p1) {
+	return complex( (p0.re+p1.re)/2, (p0.im+p1.im)/2 );
 }
