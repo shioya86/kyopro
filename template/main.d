@@ -6,8 +6,8 @@ import std;
 const long mod = 10^^9+7;
 const long inf = 10L^^18+1;
 
-alias instr = () => readln.chomp;
 alias PQueue(T, alias less="a<b") = BinaryHeap!(Array!T, less);
+string instr() { return readln.chomp; }
 T inone(T=int)(){return readln.chomp.to!T;}
 void inelm(L...)(ref L A){ auto l = readln.split;
 	foreach(i, T; L) A[i]=l[i].to!T; }
