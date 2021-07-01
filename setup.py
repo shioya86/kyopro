@@ -79,6 +79,10 @@ if __name__ == '__main__':
         order = 'cp {} {}'.format(template_path, out_path)
         create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
 
+        order = 'cp -r {}/.vscode {}'.format(os.path.dirname(__file__), out_path)
+        print(order)
+        subprocess.run(order, shell=True)
+
     else:
         print('error: Unsupported OS.')
 
