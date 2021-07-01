@@ -1,7 +1,7 @@
 void main() {
 
 }
-     
+
 import std;
 const long mod = 10^^9+7;
 const long inf = 10L^^18+1;
@@ -29,12 +29,25 @@ class UnionFind {
   bool same(int x, int y) { return find(x) == find(y); }
 }
 
-T crotate(T=Complex!double)(T center, T target, real theta) {
-  return complex(
-    (target.re-center.re)*cos(theta) - (target.im-center.im)*sin(theta) + center.re,
-    (target.re-center.re)*sin(theta) + (target.im-center.im)*cos(theta) + center.im);
-}
+struct Edge{ uint to;long cost; }
+struct P{ long dist; uint vt; }
+class Dijkstra {
+	uint V; Edge[][] G; long[] d;
+	this(uint n) { V = n; G.length = d.length = V; }
+	void insert_edge(uint s, uint t, long cost) { G[s] ~= Edge(t, cost); }
+	void run(uint s) {
+		d[0..$] = 100_000_000_000; 
+		d[s] = 0;
+		PQueue!(P, "a.dist>b.dist") que; que.insert( P(0, s) );
 
-T ccenter(T=Complex!double)(T p0, T p1) {
-  return complex( (p0.re+p1.re)/2, (p0.im+p1.im)/2 );
+		while(!que.empty()) {
+			P p = que.removeAny; uint v = p.vt;
+			if(d[v]<p.dist) continue;
+			foreach(e; G[v]) {
+				if(d[e.to]>d[v]+e.cost) { d[e.to] = d[v] + e.cost;
+				que.insert( P(d[e.to], e.to) );
+				}
+			}
+		}
+	}
 }
