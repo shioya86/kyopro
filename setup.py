@@ -14,7 +14,7 @@ def create_files(_lang, _order, _problem_num):
         print( 'error: Unsupported programming language.' )
         exit()
     for i in range( int(_problem_num) ):
-        new_order = '{}{}.{}'.format(_order, chr(ord('A')+i), extension)
+        new_order = '{}{}.{}'.format(_order, "task" + str(i+1).zfill(3), extension)
         subprocess.run(new_order, shell=True, cwd=os.getcwd())
 
 def create_desktop_path():
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     order = 'mkdir -p {}/{}'.format(os.getcwd(), outdir)
     subprocess.run(order, shell=True)
 
-    order = 'rm {}/{}/*'.format(os.getcwd(), outdir)
+    order = 'rm -f {}/{}/*'.format(os.getcwd(), outdir)
     subprocess.run(order, shell=True)
 
     template_path = '{}/template/main.{}'.format(
