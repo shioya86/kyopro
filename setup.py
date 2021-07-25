@@ -18,14 +18,7 @@ def create_files(_lang, _order, _problem_num):
         subprocess.run(new_order, shell=True, cwd=os.getcwd())
 
 def create_desktop_path():
-    desktop_path = ''
-    if platform.system() == 'Windows' :
-        desktop_path = os.getenv("HOMEDRIVE") + os.getenv("HOMEPATH") + "\\Desktop"
-    elif platform.system() == 'Linux' :
-        desktop_path = os.getenv('HOME') + '/Desktop'
-    else:
-        exit()
-    return desktop_path
+    return os.getenv('HOME') + '/Desktop'
 
 def input_default(default):
     res = input()
@@ -51,39 +44,21 @@ if __name__ == '__main__':
     print( 'making competitive programming project.')
 
     # 解答テンプレートの挿入
-    if platform.system() == 'Windows':
-        # For Windows OS
-        order = 'mkdir {}\\{}'.format(os.getcwd(), outdir)
-        subprocess.run(order, shell=True) # make target directory
+    order = 'mkdir -p {}/{}'.format(os.getcwd(), outdir)
+    subprocess.run(order, shell=True)
 
-        order = 'del /Q {}\\{}\\'.format(os.getcwd(), outdir)
-        subprocess.run(order, shell=True) # delete prev submission files
+    order = 'rm {}/{}/*'.format(os.getcwd(), outdir)
+    subprocess.run(order, shell=True)
 
-        template_path = '{}\\template\\main.{}'.format( 
-                os.path.dirname(__file__),
-                extensions[use_lang] )
-        out_path = '{}\\{}\\'.format(os.getcwd(), outdir)
-        order = 'copy {} {}'.format(template_path, out_path)
-        create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
-    elif platform.system() == 'Linux':
-        order = 'mkdir {}/{}'.format(os.getcwd(), outdir)
-        subprocess.run(order, shell=True)
+    template_path = '{}/template/main.{}'.format(
+        os.path.dirname(__file__),
+        extensions[use_lang] )
+    out_path = '{}/{}/'.format(os.getcwd(), outdir)
+    order = 'cp {} {}'.format(template_path, out_path)
+    create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
 
-        order = 'rm {}/{}/*'.format(os.getcwd(), outdir)
-        subprocess.run(order, shell=True)
-
-        template_path = '{}/template/main.{}'.format(
-                os.path.dirname(__file__),
-                extensions[use_lang] )
-        out_path = '{}/{}/'.format(os.getcwd(), outdir)
-        order = 'cp {} {}'.format(template_path, out_path)
-        create_files(_lang=use_lang, _order=order, _problem_num=problem_num)
-
-        order = 'cp -r {}/.vscode {}'.format(os.path.dirname(__file__), out_path)
-        print(order)
-        subprocess.run(order, shell=True)
-
-    else:
-        print('error: Unsupported OS.')
+    order = 'cp -r {}/.vscode {}'.format(os.path.dirname(__file__), out_path)
+    print(order)
+    subprocess.run(order, shell=True)
 
     print('Done')
