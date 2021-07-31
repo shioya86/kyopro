@@ -1,4 +1,5 @@
-void main() {
+void main() 
+{
 
 }
 
@@ -16,11 +17,13 @@ T convn(T=int)(char c){ return (c-'0').to!T; }
 bool chmin(T=long)(ref T a, const T b) { if(a>b) {a=b; return true;} return false; }
 bool chmax(T=long)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
 
-class UnionFind {
+class UnionFind 
+{
   int[] par, rank;
   this(int n) { par.length = rank.length = n; foreach(i; 0..n) par[i] = i; }
   int find(int x) { if (par[x] == x) return x; else return par[x] = find(par[x]); }
-  void unite(int x, int y) {
+  void unite(int x, int y) 
+	{
     x = find(x); y = find(y);
     if(x==y) return;
     if(rank[x] < rank[y]) par[x] = y;
@@ -31,7 +34,8 @@ class UnionFind {
 
 struct Edge{ uint to;long cost; }
 struct P{ long dist; uint vt; }
-class Dijkstra {
+class Dijkstra 
+{
 	uint V; Edge[][] G; long[] d;
 	this(uint n) { V = n; G.length = d.length = V; }
 	void insert_edge(uint s, uint t, long cost) { G[s] ~= Edge(t, cost); }
@@ -40,10 +44,12 @@ class Dijkstra {
 		d[s] = 0;
 		PQueue!(P, "a.dist>b.dist") que; que.insert( P(0, s) );
 
-		while(!que.empty()) {
+		while(!que.empty()) 
+		{
 			P p = que.removeAny; uint v = p.vt;
 			if(d[v]<p.dist) continue;
-			foreach(e; G[v]) {
+			foreach(e; G[v]) 
+			{
 				if(d[e.to]>d[v]+e.cost) { d[e.to] = d[v] + e.cost;
 				que.insert( P(d[e.to], e.to) );
 				}
