@@ -8,13 +8,20 @@ supported_languages = [ 'D', 'Python', 'C++' ]
 extensions = {'D':'d', 'C':'c', 'Kotlin':'kt', 'C++':'cpp', 'Python':'py'}
 
 def create_files(_lang, _order, _problem_num):
+    if int(_problem_num)==0:
+        return
+
+    # 問題名をアルファベットにするかどうか
+    alph_flag = True if int(_problem_num)<=26 else False
+
     if _lang in extensions:
         extension = extensions[_lang]
     else:
         print( 'error: Unsupported programming language.' )
         exit()
     for i in range( int(_problem_num) ):
-        new_order = '{}{}.{}'.format(_order, "task" + str(i+1).zfill(3), extension)
+        p_filename = chr(ord('A') + i) if alph_flag else "task" + str(i+1).zfill(3)
+        new_order = '{}{}.{}'.format(_order, p_filename, extension)
         subprocess.run(new_order, shell=True, cwd=os.getcwd())
 
 def create_desktop_path():
