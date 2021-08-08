@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
     out_path = '{}/{}/'.format(os.getcwd(), outdir)
     order = 'cp {} {}'.format(template_path, out_path)
-    create_files(_ext=file_ext, _order=order, _problem_num=problem_num)
+    create_files(_ext=file_ext, _order=order, _problem_num=int(problem_num))
 
     order = 'cp -r {}/.vscode {}'.format(os.path.dirname(__file__), out_path)
     subprocess.run(order, shell=True)
