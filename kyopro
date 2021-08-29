@@ -40,7 +40,7 @@ if __name__ == '__main__':
   print( 'Contest name? (tasks)', end=' ' )
   outdir = input_default('tasks')
 
-  print( 'Number of problems in the contest? (6)', end=' ')
+  print( 'Number of problems in the contest? (8)', end=' ')
   problem_num = input_default(8)
 
   print( 'Making competitive programming project...')
