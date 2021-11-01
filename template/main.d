@@ -57,3 +57,11 @@ class Dijkstra
     }
   }
 }
+
+double DegToRad(double degree) {
+  return degree * PI / 180.0;
+}
+
+double RadToDeg(double radian) {
+  return radian * 180.0 / PI;
+}
