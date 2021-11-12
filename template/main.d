@@ -3,6 +3,7 @@
 void solve() {
 
 }
+
 void main() {
   // 入力
 
