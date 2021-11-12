@@ -1,11 +1,19 @@
-void init() {
 
-}
 
 void solve() {
 
 }
 void main() {
+  // 入力
+
+　// 前処理
+  init();
+
+  // 解答
+  solve().witeln();
+}
+
+void init() {
 
 }
 
