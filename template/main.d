@@ -28,7 +28,7 @@ T inone(T=int)(){return readln.chomp.to!T;}
 void inelm(L...)(ref L A){ auto l = readln.split;
   foreach(i, T; L) A[i]=l[i].to!T; }
 void appendElm(L...)(ref L A){ auto l = readln.split;
-  foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i][0]));
+  foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i].front));
 }
 T[] inarr(T = int)(){ return readln.split.to!(T[]); }
 T convn(T=int)(char c){ return (c-'0').to!T; }
