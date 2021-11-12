@@ -7,7 +7,7 @@ void solve() {
 void main() {
   // 入力
 
-　// 前処理
+  // 前処理
   init();
 
   // 解答
