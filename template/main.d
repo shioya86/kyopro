@@ -1,3 +1,10 @@
+void init() {
+
+}
+
+void solve() {
+
+}
 void main() {
 
 }
