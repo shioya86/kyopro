@@ -19,8 +19,7 @@ void init() {
 }
 
 import std;
-const long mod = 10^^9+7;
-const long inf = 10L^^18+1;
+const long MOD = 10^^9+7;
 
 alias PQueue(T, alias less="a<b") = BinaryHeap!(Array!T, less);
 string instr() { return readln.chomp; }
@@ -55,8 +54,8 @@ class Dijkstra {
   uint V; Edge[][] G; long[] d;
   this(uint n) { V = n; G.length = d.length = V; }
   void insert_edge(uint s, uint t, long cost) { G[s] ~= Edge(t, cost); }
-  void run(uint s) {
-    d[0..$] = 100_000_000_000; 
+  void run(uint s, uint inf=100_000_000_000) {
+    d[0..$] = inf; 
     d[s] = 0;
     PQueue!(P, "a.dist>b.dist") que; que.insert( P(0, s) );
 
@@ -79,3 +78,12 @@ double degToRad(double degree) {
 double radToDeg(double radian) {
   return radian * 180.0 / PI;
 }
+
+T getSumDigit(T=long)(T N) {
+	T ret;
+	foreach(e; N.to!string) {
+		ret += e - '0';	
+	}
+	return ret;
+}
+
