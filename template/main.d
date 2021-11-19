@@ -48,29 +48,6 @@ class UnionFind {
   bool same(int x, int y) { return find(x) == find(y); }
 }
 
-struct Edge{ uint to;long cost; }
-struct P{ long dist; uint vt; }
-class Dijkstra {
-  uint V; Edge[][] G; long[] d;
-  this(uint n) { V = n; G.length = d.length = V; }
-  void insert_edge(uint s, uint t, long cost) { G[s] ~= Edge(t, cost); }
-  void run(uint s, uint inf=100_000_000_000) {
-    d[0..$] = inf; 
-    d[s] = 0;
-    PQueue!(P, "a.dist>b.dist") que; que.insert( P(0, s) );
-
-    while(!que.empty()) {
-      P p = que.removeAny; uint v = p.vt;
-      if(d[v]<p.dist) continue;
-      foreach(e; G[v]) {
-        if(d[e.to]>d[v]+e.cost) { d[e.to] = d[v] + e.cost;
-        que.insert( P(d[e.to], e.to) );
-        }
-      }
-    }
-  }
-}
-
 double degToRad(double degree) {
   return degree * PI / 180.0;
 }
