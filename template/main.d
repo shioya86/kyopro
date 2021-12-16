@@ -52,6 +52,11 @@ T getSumDigit(T=long)(T N) {
 	return ret;
 }
 
+string zfill (string str, int num) {
+  if (num <= str.length) return str;
+  return "0".repeat(num-str.length).join ~ str;
+}
+
 Tuple!(long, long)[] primeFactorize (long n) {
   Tuple!(long, long)[] res;
   for (long p=2; p*p <= n; ++p) {
