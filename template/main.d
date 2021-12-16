@@ -75,3 +75,13 @@ Tuple!(long, long)[] prime_factorize (long n) {
   if (n != 1) res ~= Tuple!(long, long)(n, 1);
   return res;
 }
+
+long[] divisor (long n) {
+  long[] res;
+  foreach (i; 1..n+1) {
+    if (n%i == 0) {
+      res ~= n/i;
+    }
+  }
+  return res;
+}
