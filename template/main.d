@@ -64,7 +64,7 @@ T getSumDigit(T=long)(T N) {
 	return ret;
 }
 
-Tuple!(long, long)[] prime_factorize (long n) {
+Tuple!(long, long)[] primeFactorize (long n) {
   Tuple!(long, long)[] res;
   for (long p=2; p*p <= n; ++p) {
     if ( n%p ) continue;
