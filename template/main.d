@@ -71,6 +71,9 @@ Tuple!(long, long)[] primeFactorize (long n) {
 
 long[] divisor (long n) {
   long[] res;
-  foreach (i; 1..n+1) if (n%i == 0) res ~= n/i;
+  for (int i=1; 1L*i^^2 <= n; ++i) if (n%i == 0) {
+    res ~= i;
+    if (i*i != n) res ~= (n/i);
+  }
   return res;
 }
