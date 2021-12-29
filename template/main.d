@@ -57,6 +57,11 @@ string zfill (string str, int num) {
   return "0".repeat(num-str.length).join ~ str;
 }
 
+long factorial(long n, long mod=MOD) {
+  if (n == 0) return 1;
+  return n*factorial(n-1) % mod;
+}
+
 Tuple!(long, long)[] primeFactorize (long n) {
   Tuple!(long, long)[] res;
   for (long p=2; p*p <= n; ++p) {
