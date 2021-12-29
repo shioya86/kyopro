@@ -46,7 +46,9 @@ double degToRad(double degree) { return degree * PI / 180.0; }
 
 double radToDeg(double radian) { return radian * 180.0 / PI; }
 
-T getSumDigit(T=long)(T N) {
+T getDigitLen(T)(T n) { return n.to!string.length; }
+
+T getSumDigit(T)(T N) {
 	T ret;
 	foreach(e; N.to!string) ret += e - '0';	
 	return ret;
