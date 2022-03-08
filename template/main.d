@@ -5,9 +5,6 @@ void solve() {
 }
 
 void main() {
-  // 入力
-
-  // 前処理, 解答
   init;
   solve;
 }
