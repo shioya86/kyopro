@@ -1,4 +1,7 @@
 
+void init() {
+
+}
 
 void solve() {
 
@@ -9,9 +12,6 @@ void main() {
   solve;
 }
 
-void init() {
-
-}
 
 import std;
 const long MOD = 10^^9+7;
