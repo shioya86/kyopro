@@ -23,7 +23,7 @@ void inelm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]=l[i].to!
 void appendElm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i].front)); }
 T[] inarr (T = int)(){ return readln.split.to!(T[]); }
 T toNum (T=int)(char c){ return (c-'0').to!T; }
-
+uint inc (uint n) {return n+1;}
 bool chmin (T=long)(ref T a, const T b) { if(a>b) {a=b; return true;} return false; }
 bool chmax (T=long)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
 
