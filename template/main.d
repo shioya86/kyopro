@@ -20,7 +20,7 @@ const long MOD = 10^^9+7;
 T[] inarr (T = int)(){ return readln.split.to!(T[]); }
 void inelm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]=l[i].to!T; }
 void appendElm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i].front)); }
-string instr() { return readln.chomp; }
+void instr(ref string s) { s = readln.chomp; }
 // exchange
 T toNum (T=int)(char c){ return (c-'0').to!T; }
 double degToRad(double degree) { return degree * PI / 180.0; }
