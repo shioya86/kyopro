@@ -17,7 +17,6 @@ import std;
 const long MOD = 10^^9+7;
 
 // input
-T inone(T=int)(){return readln.chomp.to!T;}
 T[] inarr (T = int)(){ return readln.split.to!(T[]); }
 void inelm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]=l[i].to!T; }
 void appendElm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i].front)); }
@@ -29,12 +28,10 @@ double radToDeg(double radian) { return radian * 180.0 / PI; }
 // string
 T getDigitLen(T)(T n) { return n.to!string.length; }
 T getSumDigit(T)(T n) { T ret; foreach(e; n.to!string) ret += e - '0'; return ret; }
-string zfill (string str, int num) {if(num<=str.length)return str;return "0".repeat(num-str.length).join~str;}
-// for utils
-uint inc (uint n) {return n+1;}
+// comparison
 bool chmin (T=long)(ref T a, const T b) { if(a>b) {a=b; return true;} return false; }
 bool chmax (T=long)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
-// Data structure
+// data structure
 alias PQueue(T, alias less="a<b") = BinaryHeap!(Array!T, less);
 class UnionFind {
   int[] par, rank;
@@ -70,7 +67,7 @@ struct ModInt (long M = 10L^^9 + 7) { long n;
   }
 }
 // MOD付き階乗
-long factorial(long n, long mod=MOD) { if (n == 0) return 1;return n*factorial(n-1) % mod;} 
+long factorial(long n, long mod=MOD) { if (n == 0) return 1;return n*factorial(n-1) % mod;}
 // 素因数分解
 Tuple!(long, long)[] primeFactorize (long n) { Tuple!(long, long)[] res;
   for (long p=2; p*p <= n; ++p) {
