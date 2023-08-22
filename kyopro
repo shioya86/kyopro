@@ -13,7 +13,7 @@ def create_files(_ext:str, _order:str, _problem_num:int):
   alph_flag = True if _problem_num<=26 else False
 
   for i in range( _problem_num ):
-    p_filename = chr(ord('A') + i) if alph_flag else "task" + str(i+1).zfill(3)
+    p_filename = chr(ord('a') + i) if alph_flag else "task" + str(i+1).zfill(3)
     new_order = '{}{}.{}'.format(_order, p_filename, _ext)
 
     subprocess.run(new_order, shell=True, cwd=os.getcwd())
