@@ -52,3 +52,15 @@ struct ModInt (long M) {
   long div (long l, long r) { return (l * pow(r, M - 2)) % M; } long mul (long l, long r) { return (l * r) % M; }
   long pow (long l, long r) { if (r == 1) return l; if (r & 1) return (l * pow(l, r - 1)) % M; return pow(l, r/2)^^2 % M; }
 }
+// algorithm
+class Dijkstra {
+  struct Edge { uint to; long cost; }
+  struct P { long dist; uint vt; }
+  uint V; Edge[][] G; long[] d; PQueue!(P, "a.dist>b.dist") que;
+  this (uint n) { V = n; G.length = n; d.length = n; }
+  void insertEdge (uint s, uint t, long cost) { G[s] ~= Edge(t, cost); }
+  private void initBeforeRun (uint s) { d[0..$] = long.max; d[s] = 0; que.clear; que.insert(P(0, s)); }
+  private void updateDist (uint v, Edge e) { if(d[e.to]>d[v]+e.cost){d[e.to]=d[v]+e.cost;que.insert(P(d[e.to],e.to));} }
+  void run (uint s) { initBeforeRun(s);while(!que.empty()){P p=que.removeAny;if(d[p.vt]<p.dist)continue;foreach(e;G[p.vt]){updateDist(p.vt, e);}} }
+}
+
