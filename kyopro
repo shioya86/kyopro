@@ -24,26 +24,40 @@ def input_default(default):
   return default if res=='' else res
 
 if __name__ == '__main__':
-  print( 'input your project information.\n')
+  args = sys.argv
+  if 2 == len(args):
+    # コマンドライン引数にファイル名が与えられていた場合、その名前で簡易作成する
+    easy_make_path = '{}/{}'.format(os.getcwd(), args[1])
+    if os.path.isdir(easy_make_path):
+      print( '[error] The specified directory already exists.' )
+      exit()
+    file_path = os.getcwd()
+    file_ext = 'd'
+    template_path = '{}/template/main.d'.format(os.path.dirname(__file__))
+    outdir = args[1]
+    problem_num = 8
+  else:
+    # コマンドライン引数に何もない場合インタラクティブに生成
+    print( 'input your project information.\n')
 
-  print( 'File path? ({})'.format( os.getcwd() ), end=' ')
-  file_path = input_default( os.getcwd() )
+    print( 'File path? ({})'.format( os.getcwd() ), end=' ')
+    file_path = input_default( os.getcwd() )
 
-    
-  print( 'Your language extension? (d)', end=' ' )
-  file_ext = input_default('d')
-  template_path = '{}/template/main.{}'.format( os.path.dirname(__file__), file_ext)
-  if not os.path.isfile(template_path):
-    print('This template file has your input extension is not found.')
-    exit()
+      
+    print( 'Your language extension? (d)', end=' ' )
+    file_ext = input_default('d')
+    template_path = '{}/template/main.{}'.format( os.path.dirname(__file__), file_ext)
+    if not os.path.isfile(template_path):
+      print('This template file has your input extension is not found.')
+      exit()
 
-  print( 'Contest name? (tasks)', end=' ' )
-  outdir = input_default('tasks')
+    print( 'Contest name? (tasks)', end=' ' )
+    outdir = input_default('tasks')
 
-  print( 'Number of problems in the contest? (8)', end=' ')
-  problem_num = input_default(8)
+    print( 'Number of problems in the contest? (8)', end=' ')
+    problem_num = input_default(8)
 
-  print( 'Making competitive programming project...')
+    print( 'Making competitive programming project...')
 
   # 解答テンプレートの挿入
   order = 'mkdir -p {}/{}'.format(os.getcwd(), outdir)
