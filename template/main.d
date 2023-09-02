@@ -63,4 +63,9 @@ class Dijkstra {
   private void updateDist (uint v, Edge e) { if(d[e.to]>d[v]+e.cost){d[e.to]=d[v]+e.cost;que.insert(P(d[e.to],e.to));} }
   void run (uint s) { initBeforeRun(s);while(!que.empty()){P p=que.removeAny;if(d[p.vt]<p.dist)continue;foreach(e;G[p.vt]){updateDist(p.vt, e);}} }
 }
-
+class Combination {
+  private long[] f; private long m = MOD; private long len = 2_010_101;
+  this () { this.f=new long[](len);f[0]=1;foreach(i; 1..len) f[i] = (f[i - 1] * i)%m; }
+  mint nCk (long n, long k) { mint a=f[n];mint b=f[n-k];mint c=f[k];mint bc=b*c;return a/bc; }
+  mint nHk (long n, long k) { if(k<0)return mint(0);mint a=f[n+k-1];mint b=f[k];mint c=f[n-1]; mint bc=b*c; return a/bc; }
+}
