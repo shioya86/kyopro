@@ -40,20 +40,20 @@ alias mint = ModInt!(MOD);
 struct ModInt (long M) { 
   private long n;
   this(T)(T n) { this.n = n % M; }
-  auto opUnary (string OP: "++")() { this.n = sum(this.n, 1); return this; }
-  auto opUnary (string OP: "--")() { this.n = sub(this.n, 1); return this; }
+  auto opUnary (string op: "++")() { this.n = sum(this.n, 1); return this; }
+  auto opUnary (string op: "--")() { this.n = sub(this.n, 1); return this; }
   void opAssign (long r) { this.n = r; }
-  void opOpAssign (string OP: "*")(ModInt r) { this.n = mul(this.get, r.n); }
+  void opOpAssign (string op: "*")(ModInt r) { this.n = mul(this.get, r.n); }
   void opOpAssign (string op: "+")(ModInt r) { this.n = sum(this.get, r.n); }
   void opOpAssign (string op: "-")(ModInt r) { this.n = sub(this.get, r.n); }
   auto opOpAssign (string op)(long r) { return this.opOpAssign!op( ModInt(r) ); }
-  auto opBinary (string OP: "+")(ModInt r) { return ModInt(sum(this.get, r.n)); }
-  auto opBinary (string OP: "-")(ModInt r) { return ModInt(sub(this.get, r.n)); }
-  auto opBinary (string OP: "*")(ModInt r) { return ModInt(mul(this.get, r.n)); }
-  auto opBinary (string OP: "/")(ModInt r) { return ModInt(div(this.get, r.n)); }
-  auto opBinary (string OP: "^^")(ModInt r) { return ModInt(pow(this.get, r.n)); }
-  auto opBinary (string OP)(long r) { return this.opBinary!OP( ModInt(r) ); }
-  auto opBinaryRight (string OP)(long l) { return ModInt(l).opBinary!OP(this); }
+  auto opBinary (string op: "+")(ModInt r) { return ModInt(sum(this.get, r.n)); }
+  auto opBinary (string op: "-")(ModInt r) { return ModInt(sub(this.get, r.n)); }
+  auto opBinary (string op: "*")(ModInt r) { return ModInt(mul(this.get, r.n)); }
+  auto opBinary (string op: "/")(ModInt r) { return ModInt(div(this.get, r.n)); }
+  auto opBinary (string op: "^^")(ModInt r) { return ModInt(pow(this.get, r.n)); }
+  auto opBinary (string op)(long r) { return this.opBinary!op( ModInt(r) ); }
+  auto opBinaryRight (string op)(long l) { return ModInt(l).opBinary!op(this); }
   long get () { return this.n; }
   long sum (long l, long r) { return (l + r) % M; } long sub (long l, long r) { return (l + M - r) % M; }
   long div (long l, long r) { return (l * pow(r, M - 2)) % M; } long mul (long l, long r) { return (l * r) % M; }
