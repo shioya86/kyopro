@@ -40,13 +40,14 @@ alias mint = ModInt!(MOD);
 struct ModInt (long M) { 
   private long n;
   this(T)(T n) { this.n = n%M; }
-  void opUnaray (string OP)() { if (OP == "++") this.n = sum(this.n, 1); if (OP == "--") this.n = sub(this.n, 1); }
-  void opOpAssign (string OP)(long r) { this.opOpAssign!OP( ModInt(r) ); }
+  auto opUnary (string OP: "++")() { this.n = sum(this.n, 1); return this; }
+  auto opUnary (string OP: "--")() { this.n = sub(this.n, 1); return this; }
   void opAssign (long r) { this.n = r; }
   auto opBinary (string OP: "+")(ModInt r) { return ModInt(sum(this.n, r.n)); }
   auto opBinary (string OP: "-")(ModInt r) { return ModInt(sub(this.n, r.n)); }
   auto opBinary (string OP: "*")(ModInt r) { return ModInt(mul(this.n, r.n)); }
   auto opBinary (string OP: "/")(ModInt r) { return ModInt(div(this.n, r.n)); }
+  auto opBinary (string OP: "^^")(ModInt r) { return ModInt(pow(this.n, r.n)); }
   auto opBinary (string OP)(long r){ return this.opBinary!OP( ModInt(r) ); }
   long get () { return this.n; }
   auto opBinaryRight( string OP )( long l ){ return ModInt(l).opBinary!OP(this); }
