@@ -17,14 +17,15 @@ import std;
 const long MOD = 10^^9+7;
 
 // input
-void inarr (T = int)(ref T[] arr){ arr = readln.split.to!(T[]); }
+void inarr (T)(ref T[] arr){ arr = readln.split.to!(T[]); }
+T[] inarr (T)() { return readln.split.to!(T[]); }
 void inelm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]=l[i].to!T; }
 void appendElm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i].front)); }
 void instr(ref string s) { s = readln.chomp; }
 string instr() { return readln.chomp; }
 // comparison
-bool chmin (T=long)(ref T a, const T b) { if(a>b) {a=b; return true;} return false; }
-bool chmax (T=long)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
+bool chmin (T)(ref T a, const T b) { if(a>b) {a=b; return true;} return false; }
+bool chmax (T)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
 // data structure
 alias PQueue(T, alias less="a<b") = BinaryHeap!(Array!T, less);
 class UnionFind {
