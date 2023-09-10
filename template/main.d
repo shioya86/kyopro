@@ -19,13 +19,15 @@ const long MOD = 10^^9+7;
 // input
 void inarr (T)(ref T[] arr){ arr = readln.split.to!(T[]); }
 T[] inarr (T)() { return readln.split.to!(T[]); }
-void inelm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]=l[i].to!T; }
-void appendElm(L...)(ref L A){ auto l = readln.split; foreach(i, T; L) A[i]~=l[i].to!(typeof(A[i].front)); }
-void instr(ref string s) { s = readln.chomp; }
+void inelm (L...)(ref L A) { auto l=readln.split;foreach(i,T;L)A[i]=l[i].to!T; }
+void appendElm (L...)(ref L A) { auto l=readln.split;foreach(i,T;L)A[i]~=l[i].to!(typeof(A[i].front)); }
+void instr(ref string s) { s=readln.chomp; }
 string instr() { return readln.chomp; }
-// comparison
+// utils
 bool chmin (T)(ref T a, const T b) { if(a>b) {a=b; return true;} return false; }
 bool chmax (T)(ref T a, const T b) { if(a<b) {a=b; return true;} return false; }
+bool isEven (T)(T a) { return a%2==0; }
+bool isOdd (T)(T a) { return a&1; }
 // data structure
 alias PQueue(T, alias less="a<b") = BinaryHeap!(Array!T, less);
 class UnionFind {
@@ -33,7 +35,7 @@ class UnionFind {
   this(int n) { par.length=rank.length=cnt.length=n;cnt[]=1;foreach(i;0..n)par[i]=i; }
   int find(int x) { if(par[x] == x)return x;else return par[x]=find(par[x]); }
   void unite(int x, int y) { x=find(x);y=find(y);if(x==y)return;if(rank[x]<rank[y]){par[x]=y;cnt[y]+=cnt[x];}else{par[y]=x;cnt[x]+=cnt[y];if(rank[x]==rank[y])rank[x]++;} }
-  bool same(int x, int y) { return find(x) == find(y); }
+  bool isSame(int x, int y) { return find(x) == find(y); }
   int size(int x) { return cnt[find(x)]; }
 }
 alias mint = ModInt!(MOD);
