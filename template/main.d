@@ -40,8 +40,8 @@ alias mint = ModInt!(MOD);
 struct ModInt (long M) { 
   private long n;
   this(T)(T n) { this.n = n % M; }
-  auto opUnary (string op: "++")() { this.n = sum(this.n, 1); return this; }
-  auto opUnary (string op: "--")() { this.n = sub(this.n, 1); return this; }
+  auto opUnary (string op: "++")() { this.n = sum(this.get, 1); return this; }
+  auto opUnary (string op: "--")() { this.n = sub(this.get, 1); return this; }
   void opAssign (long r) { this.n = r; }
   void opOpAssign (string op: "*")(ModInt r) { this.n = mul(this.get, r.n); }
   void opOpAssign (string op: "+")(ModInt r) { this.n = sum(this.get, r.n); }
@@ -52,7 +52,7 @@ struct ModInt (long M) {
   auto opBinary (string op: "*")(ModInt r) { return ModInt(mul(this.get, r.n)); }
   auto opBinary (string op: "/")(ModInt r) { return ModInt(div(this.get, r.n)); }
   auto opBinary (string op: "^^")(ModInt r) { return ModInt(pow(this.get, r.n)); }
-  auto opBinary (string op)(long r) { return this.opBinary!op( ModInt(r) ); }
+  auto opBinary (string op)(long r) { return this.opBinary!op(ModInt(r)); }
   auto opBinaryRight (string op)(long l) { return ModInt(l).opBinary!op(this); }
   long get () { return this.n; }
   long sum (long l, long r) { return (l + r) % M; } long sub (long l, long r) { return (l + M - r) % M; }
@@ -66,9 +66,9 @@ class Dijkstra {
   uint V; Edge[][] G; long[] d; PQueue!(P, "a.dist>b.dist") que;
   this (uint n) { V = n; G.length = n; d.length = n; }
   void insertEdge (uint s, uint t, long cost) { G[s] ~= Edge(t, cost); }
+  void run (uint s) { initBeforeRun(s);while(!que.empty()){P p=que.removeAny;if(d[p.vt]<p.dist)continue;foreach(e;G[p.vt]){updateDist(p.vt, e);}} }
   private void initBeforeRun (uint s) { d[0..$] = long.max; d[s] = 0; que.clear; que.insert(P(0, s)); }
   private void updateDist (uint v, Edge e) { if(d[e.to]>d[v]+e.cost){d[e.to]=d[v]+e.cost;que.insert(P(d[e.to],e.to));} }
-  void run (uint s) { initBeforeRun(s);while(!que.empty()){P p=que.removeAny;if(d[p.vt]<p.dist)continue;foreach(e;G[p.vt]){updateDist(p.vt, e);}} }
 }
 class Combination {
   private long[] f; private long m = MOD; private long len = 2_010_101;
