@@ -1,0 +1,12 @@
+{
+  "task": {
+    "program": ["main.d", "{TaskId}.d"],
+    "submit": "main.d",
+    "testdir": "test",
+    "cmd": "echo Hi!"
+  },
+  "contest": {
+    "statis": ["gitignore", ".gitignore"],
+    "cmd": "echo Hi!!"
+  }
+}
